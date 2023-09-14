@@ -33,25 +33,25 @@ public class Instantiation implements CommandLineRunner {
         userRepository.deleteAll(); // Vai limpar a coleção de dados no MongoDB
         postRepository.deleteAll();
         
-        User maria = new User(null, "Maria Brown", "maria@gmail.com");
-        User alex = new User(null, "Alex Green", "alex@gmail.com");
-        User bob = new User(null, "Bob Grey", "bob@gmail.com");
+        User junior = new User(null, "Junior Alves ", "junior@gmail.com");
+        User rui = new User(null, "Rui Alves", "rui@gmail.com");
+        User heitor = new User(null, "Heitor Alves", "heitor@gmail.com");
 
-        userRepository.saveAll(Arrays.asList(maria, alex, bob)); // Salvando no banco de dados
+        userRepository.saveAll(Arrays.asList(junior, rui, heitor)); // Salvando no banco de dados
         
-        Post post1 = new Post(null, sdf.parse("21/03/2018"), "Partiu Viagem", "Vou viajar para SP. Abraços!", new AuthorDTO(maria));
-        Post post2 = new Post(null, sdf.parse("23/03/2018"), "Bom Dia", "Acordei feliz hoje", new AuthorDTO(maria));
+        Post post1 = new Post(null, sdf.parse("21/03/2018"), "Partiu Viagem", "Vou viajar para SP. Abraços!", new AuthorDTO(junior));
+        Post post2 = new Post(null, sdf.parse("23/03/2018"), "Bom Dia", "Acordei feliz hoje", new AuthorDTO(junior));
        
-        CommentDTO c1 = new CommentDTO("Boa viagme mano",sdf.parse("21/03/2018"), new AuthorDTO(alex));
-        CommentDTO c2 = new CommentDTO("Aproveite",sdf.parse("22/03/2018"),new AuthorDTO(bob));
-        CommentDTO c3 = new CommentDTO("Tenha um ótimo dia",sdf.parse("23/03/2018"), new AuthorDTO(alex));
+        CommentDTO c1 = new CommentDTO("Boa viagme mano",sdf.parse("21/03/2018"), new AuthorDTO(rui));
+        CommentDTO c2 = new CommentDTO("Aproveite",sdf.parse("22/03/2018"),new AuthorDTO(heitor));
+        CommentDTO c3 = new CommentDTO("Tenha um ótimo dia",sdf.parse("23/03/2018"), new AuthorDTO(rui));
 
         post1.getComments().addAll(Arrays.asList(c1,c2));
         post2.getComments().addAll(Arrays.asList(c3));
         
         postRepository.saveAll(Arrays.asList(post1, post2	));
     
-        maria.getPosts().addAll(Arrays.asList(post1, post2));
-        userRepository.save(maria);
+        junior.getPosts().addAll(Arrays.asList(post1, post2));
+        userRepository.save(junior);
     }
 }
